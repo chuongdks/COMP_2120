@@ -1,8 +1,9 @@
 public class CounterTest {
     //Main() method
     public static void main(String[] args) {
+        final int MAX_COUNTER_CAPACITY = 200;
         //Create an instance object of class Counter
-        Counter ER1118 = new Counter(19, 20); //Implicitly call the Contructor method
+        Counter ER1118 = new Counter(19, MAX_COUNTER_CAPACITY); //Implicitly call the Contructor method
         ER1118.increment();
         ER1118.increment();
         ER1118.increment();
