@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+
+public class PlayerManagerSorted {
+   private ArrayList<Integer> players;
+
+   // Constructor creates an empty ArrayList of player numbers
+   public PlayerManager() {
+      players = new ArrayList<Integer>();
+   }
+
+   // Adds playerNum to end of ArrayList
+   public void addPlayer(int playerNum) {
+      int i = 0;
+      boolean foundHigher = false;
+
+      // Look for first item greater than playerNum
+      foundHigher = false;
+      i = 0;
+
+      while ((!foundHigher) && (i < players.size())) {
+         if (players.get(i) > playerNum) {
+            // FIXME: insert playerNum at element i
+            players.add (i, playerNum);
+            foundHigher = true;
+         }
+
+         ++i;
+      }
+
+      // FIXME: change so executes if higher number NOT found
+      if (!foundHigher) { // No higher number found, add at end
+         players.add(playerNum);
+      }
+   }
+
+   // Prints player numbers currently in ArrayList
+   public void printPlayers() {
+      int i;
+
+      for (i = 0; i < players.size(); ++i) {
+         System.out.println(" " + players.get(i));
+      }
+   }
+
+   // Uses an object of type PlayerManager 
+   public static void main(String[] args) {
+      PlayerManager teamRoster = new PlayerManager();
+      teamRoster.addPlayer(55);
+      teamRoster.addPlayer(4);
+      teamRoster.addPlayer(50);
+      teamRoster.addPlayer(19);
+
+      teamRoster.printPlayers();
+   }
+}
