@@ -101,13 +101,22 @@ public class Book {
         }
     }
 
+    // Method to print all author
+    public void printAuthor() 
+    {
+        for (int i = 0; i < this.authors.size(); ++i) 
+        {
+            System.out.println("" + authors.get(i) + ", ");
+        }
+    }    
+
     // Override toString method
     @Override
     public String toString() {
         return "Title: " + title +'\n' +
                 "Edition: " + edition +'\n' +
                 "ISBN: " + isbn +'\n' +
-                "Authors: " + authors +'\n' +
+                "Authors: " + authors +'\n' + //"Authors: " + printAuthor() +'\n' +
                 "Pages: " + pages +'\n' +
                 "Price: " + price +'\n' + 
                 "------"

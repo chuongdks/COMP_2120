@@ -24,6 +24,7 @@ public class SeatReservation {
    public void makeOneSeatEmpty(int seatNum) 
    {
       // return allSeats.remove(seatNum); This will just removed the Array in the Array List
+      // and print this out instead System.out.println(ezReservations.getSeat(seatNum));
       allSeats.get(seatNum).makeEmpty();
    }
 
