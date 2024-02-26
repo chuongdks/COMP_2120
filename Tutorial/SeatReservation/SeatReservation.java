@@ -21,6 +21,7 @@ public class SeatReservation {
    }
 
    // Method to empty a specific Seat
+   // FIX ME: Add Method to make one seat empty
    public void makeOneSeatEmpty(int seatNum) 
    {
       // return allSeats.remove(seatNum); This will just removed the Array in the Array List

@@ -31,7 +31,7 @@ public class TextBook extends Book {
         return isElectronicVersion;
     }
 
-    public void setHasElectronicVersion (boolean isElectronicVersion) 
+    public void setIsElectronicVersion (boolean isElectronicVersion) 
     {
         this.isElectronicVersion = isElectronicVersion;
     }
@@ -56,12 +56,12 @@ public class TextBook extends Book {
     @Override
     public String toString() {
         String eBookString = isElectronicVersion ? "Yes" : "No";
-        double ePriceString = isElectronicVersion ? ePrice : 0;
+        double ePriceCheck = isElectronicVersion ? ePrice : 0;
 
         return super.toString() +
-                "Subject: " + subject + '\n' +
+                "\nSubject: " + subject + '\n' +
                 "eBook: " + eBookString + '\n' +
-                "ePrice: " + ePriceString + '\n' +
-                "------";
+                "ePrice: " + ePriceCheck
+                ;
     }
 }

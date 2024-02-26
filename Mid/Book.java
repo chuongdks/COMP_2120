@@ -102,12 +102,20 @@ public class Book {
     }
 
     // Method to print all author
-    public void printAuthor() 
+    public String printAuthor() 
     {
+        String addAuthor = "";
         for (int i = 0; i < this.authors.size(); ++i) 
         {
-            System.out.println("" + authors.get(i) + ", ");
+            //System.out.println("" + authors.get(i) + ", ");
+            if (i == (this.authors.size() - 1))
+            {
+                addAuthor += authors.get(i);
+                break;
+            }
+            addAuthor += authors.get(i) + ", " ;
         }
+        return addAuthor;
     }    
 
     // Override toString method
@@ -116,10 +124,9 @@ public class Book {
         return "Title: " + title +'\n' +
                 "Edition: " + edition +'\n' +
                 "ISBN: " + isbn +'\n' +
-                "Authors: " + authors +'\n' + //"Authors: " + printAuthor() +'\n' +
+                "Authors: " + printAuthor() +'\n' +
                 "Pages: " + pages +'\n' +
-                "Price: " + price +'\n' + 
-                "------"
+                "Price: " + price               
                 ;
     }
 }
