@@ -3,40 +3,59 @@ import java.util.Scanner;
 
 public class SeatReservation {
 
-   // Arraylist for seat reservations
+   // Arraylist for seat reservations based on the "Seat" Class
    private ArrayList<Seat> allSeats;
-   
+
+   // Constructor of SeatReservation to add an ArrayList of "Seat" Class
    public SeatReservation() {
        allSeats = new ArrayList<Seat>();
    }
    
-   public void makeSeatsEmpty() {
-      int i;
-      for (i = 0; i < allSeats.size(); ++i) {
+   // Method to empty all Seats
+   public void makeSeatsEmpty() 
+   {
+      for (int i = 0; i < allSeats.size(); ++i) 
+      {
          allSeats.get(i).makeEmpty();
       }
    }
 
-   public void printSeats() {
-      int i;
-      for (i = 0; i < allSeats.size(); ++i) {
+   // Method to empty a specific Seat
+   public void makeOneSeatEmpty(int seatNum) 
+   {
+      // return allSeats.remove(seatNum); This will just removed the Array in the Array List
+      allSeats.get(seatNum).makeEmpty();
+   }
+
+   // Method to print all Seats
+   public void printSeats() 
+   {
+      for (int i = 0; i < allSeats.size(); ++i) 
+      {
          System.out.print(i + ": ");
          allSeats.get(i).print();
       }
    }
 
-   public void addSeats(int numSeats) {
-      int i;
-      for (i = 0; i < numSeats; ++i) {
-         allSeats.add(new Seat());
+   // Method to add Seats
+   public void addSeats(int numSeats) 
+   {
+      for (int i = 0; i < numSeats; ++i) 
+      {
+         allSeats.add(new Seat()); // use the add() method of ArrayList
       }
    }
    
-   public Seat getSeat(int seatNum) {
-      return allSeats.get(seatNum);
+   // Method to get seat's info based on seat's number 
+   // Info came from the "Seat" Class, return a "Seat" Class type
+   public Seat getSeat (int seatNum) 
+   {
+      return allSeats.get(seatNum); // use the get() method of ArrayList
    }   
    
-   public void setSeat(int seatNum, Seat newSeat) {
+   // Method to set seat number based on the "Seat" Class, return a "Seat" Class type
+   public void setSeat(int seatNum, Seat newSeat) 
+   {
       allSeats.set(seatNum, newSeat); 
    }
 
@@ -56,25 +75,29 @@ public class SeatReservation {
       // Make all seats empty
       ezReservations.makeSeatsEmpty();
 
-      while (!usrInput.equals("q")) {
+      while (!usrInput.equals("q")) 
+      {
          System.out.println();
-         System.out.print("Enter command (p/r/q): ");
+         System.out.print("Enter command (p/r/q/d): ");
          usrInput = scnr.next();
 
          // Print seats
-         if (usrInput.equals("p")) { 
+         if (usrInput.equals("p")) 
+         { 
             ezReservations.printSeats();
          }
-         
          // Reserve a seat
-         else if (usrInput.equals("r")) {
+         else if (usrInput.equals("r")) 
+         {
             System.out.print("Enter seat num: ");
             seatNum = scnr.nextInt();
 
-            if ( !(ezReservations.getSeat(seatNum).isEmpty()) ) {
+            if ( !(ezReservations.getSeat(seatNum).isEmpty()) ) 
+            {
                System.out.println("Seat not empty.");
             }
-            else {
+            else 
+            {
                System.out.print("Enter first name: ");
                firstName = scnr.next();
                System.out.print("Enter last name: ");
@@ -84,17 +107,36 @@ public class SeatReservation {
 
                // Create new Seat object and add to the reservations
                newSeat = new Seat();
-               newSeat.reserve(firstName, lastName, amountPaid); 
+               newSeat.reserve (firstName, lastName, amountPaid); 
                ezReservations.setSeat(seatNum, newSeat); 
 
                System.out.println("Completed.");
             }
          }
-         // FIXME: Add option to delete reservations
-         else if (usrInput.equals("q")) { // Quit
+         // Quit
+         else if (usrInput.equals("q")) 
+         { 
             System.out.println("Quitting.");
          }
-         else {
+         // Delete specific seat
+         else if (usrInput.equals("d")) 
+         { 
+            System.out.print("Enter seat num: ");
+            seatNum = scnr.nextInt();
+
+            
+            if ( !(ezReservations.getSeat(seatNum).isEmpty()) ) 
+            {
+               ezReservations.makeOneSeatEmpty(seatNum);
+               System.out.println("Seat not empty. Deleting seat: " +  seatNum);
+            }
+            else 
+            {
+               System.out.println("Seat is empty.");
+            }            
+         }
+         else 
+         {
             System.out.println("Invalid command.");
          }
       }
