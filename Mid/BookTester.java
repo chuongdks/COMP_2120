@@ -32,18 +32,19 @@ public class BookTester {
         System.out.println(book3);
         System.out.println("------");
 
-        Book book4 = new Book("2923981728291", "Another Book", 1); //Implicitly call the Contructor method
+        Book book4 = new Book("2923981728291", "Another Book", 1); 
         book4.addAuthor("Bernard");
         book4.addAuthor("Kyle");
+        book4.addAuthor("Bob");
         book4.changeAuthor("Kyle", "Chuck");
         System.out.println(book4); 
-        book4.removeAuthor("Bernard");
+        book4.removeAuthor("Chuck");
         book4.setPages(0);
         book4.setPrice(0.0);
         System.out.println(book4);  
         System.out.println("------"); 
 
-        TextBook book5 = new TextBook("3295016510492", "Big Java", 5, "Computer Science"); //Implicitly call the Contructor method
+        TextBook book5 = new TextBook("3295016510492", "Big Java", 5, "Computer Science"); 
         book5.addAuthor("Horstmann");
         book5.setPages(983);
         book5.setPrice(85.0);

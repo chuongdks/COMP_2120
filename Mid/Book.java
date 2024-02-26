@@ -93,9 +93,21 @@ public class Book {
     // Method to change an author
     public void changeAuthor (String currentAuthor, String newAuthor) 
     {
-        int index = this.authors.indexOf(currentAuthor); // index return -1 if failed
+        // int index = this.authors.indexOf(currentAuthor); // index return -1 if failed
+        // Search for currentAuthor in the authors's ArrayList
+        boolean found = false;
+        int index = 0;  
+        while ( (!found) && (index < authors.size()) ) 
+        {
+            if (authors.get(index).equals(currentAuthor)) 
+            {
+                found = true; 
+                break;
+            }
+            ++index;
+        }
         // If there is a valid Author in the ArrayList, replace using set()
-        if (index != -1) 
+        if (found) 
         {
             this.authors.set(index, newAuthor);
         }
