@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 public class PlantArrayListExample {
 
-   // TODO: Define a printArrayList method that prints an ArrayList of plant (or flower) objects                                                       
+   // Define a printArrayList method that prints an ArrayList of plant (or flower) objects                                                       
    public void printArrayList (ArrayList<Plant> myGarden)
    {
       int counter = 1;
@@ -21,10 +21,10 @@ public class PlantArrayListExample {
       Scanner scnr = new Scanner(System.in);
       String input = "";
 
-      // TODO: Declare an ArrayList called myGarden that can hold object of type plant
+      // Declare an ArrayList called myGarden that can hold object of type plant
       ArrayList<Plant> myGarden = new ArrayList<Plant>();
       
-      // TODO: Declare variables - plantName, plantCost, flowerName, flowerCost, colorOfFlowers, isAnnual
+      // Declare variables - plantName, plantCost, flowerName, flowerCost, colorOfFlowers, isAnnual
       Plant myPlant;
       Flower myFlower;
       
@@ -33,7 +33,7 @@ public class PlantArrayListExample {
       boolean isAnnual;
       
       while(!input.equals("-1")){
-         // TODO: Check if input is a plant or flower
+         // Check if input is a plant or flower
          //       Store as a plant object or flower object
          //       Add to the ArrayList myGarden
          input = scnr.next();
@@ -70,7 +70,7 @@ public class PlantArrayListExample {
          }                      
       }
       
-      // TODO: Call the method printArrayList to print myGarden
+      // Call the method printArrayList to print myGarden
       PlantArrayListExample test = new PlantArrayListExample();
       test.printArrayList(myGarden);
    }
