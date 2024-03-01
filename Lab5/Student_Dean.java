@@ -8,7 +8,7 @@ public class Student_Dean {
 	private double gpa;    // grade point average
 
 	// Student class constructor
-	public Student(String first, String last, double gpa) {
+	public Student_Dean (String first, String last, double gpa) {
 		this.first = first; // first name
 		this.last = last;   // last name
 		this.gpa = gpa;     // grade point average

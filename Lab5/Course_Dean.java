@@ -4,11 +4,12 @@ public class Course_Dean {
 
 	private ArrayList<Student> roster; // Collection of Student objects
 
-	public Course() {
+	public Course_Dean() {
 		roster = new ArrayList<Student>();
 	}
    
    // Return an ArrayList of all Students with a GPA of at least 3.5
+   // This is like a Getter for an ArrayList
 	public ArrayList<Student> getDeansList() {
 	   /* Type your code here */
 	   ArrayList<Student> DeansList = new ArrayList<Student>();
@@ -28,7 +29,7 @@ public class Course_Dean {
 	
 	// main
    public static void main(String args[]) {
-      Course course = new Course();
+      Course_Dean course = new Course_Dean();
       ArrayList<Student> deanList = new ArrayList<Student>();
       String first;  // first name
       String last;   // last name

@@ -76,6 +76,7 @@ public class SeatReservation {
       // Make all seats empty
       ezReservations.makeSeatsEmpty();
 
+      // User's input
       while (!usrInput.equals("q")) 
       {
          System.out.println();
@@ -87,6 +88,7 @@ public class SeatReservation {
          { 
             ezReservations.printSeats();
          }
+
          // Reserve a seat
          else if (usrInput.equals("r")) 
          {
@@ -99,6 +101,7 @@ public class SeatReservation {
             }
             else 
             {
+               // User enter info to be put into Seat's Object Field
                System.out.print("Enter first name: ");
                firstName = scnr.next();
                System.out.print("Enter last name: ");
@@ -108,17 +111,21 @@ public class SeatReservation {
 
                // Create new Seat object and add to the reservations
                newSeat = new Seat();
-               newSeat.reserve (firstName, lastName, amountPaid); 
+               newSeat.reserve (firstName, lastName, amountPaid);
+               
+               // Add Seat's object into the ArrayList "allSeats" via the function setSeat() of SeatReservation's Object 
                ezReservations.setSeat(seatNum, newSeat); 
 
                System.out.println("Completed.");
             }
          }
+
          // Quit
          else if (usrInput.equals("q")) 
          { 
             System.out.println("Quitting.");
          }
+
          // Delete specific seat
          else if (usrInput.equals("d")) 
          { 
@@ -136,6 +143,8 @@ public class SeatReservation {
                System.out.println("Seat is empty.");
             }            
          }
+         
+         // If user enter bullshit
          else 
          {
             System.out.println("Invalid command.");
