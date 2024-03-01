@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class SeatReservation {
 
    // Arraylist for seat reservations based on the "Seat" Class
-   private ArrayList<Seat> allSeats;
+   private ArrayList<Seat> allSeats; // Has-a relationship
 
    // Constructor of SeatReservation to add an ArrayList of "Seat" Class
    public SeatReservation() {
@@ -43,7 +43,7 @@ public class SeatReservation {
    {
       for (int i = 0; i < numSeats; ++i) 
       {
-         allSeats.add(new Seat()); // use the add() method of ArrayList
+         allSeats.add(new Seat()); // use the add() method of ArrayList, add a new Seat() object
       }
    }
    

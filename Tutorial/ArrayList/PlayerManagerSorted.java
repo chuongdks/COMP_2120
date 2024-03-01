@@ -4,7 +4,7 @@ public class PlayerManagerSorted {
    private ArrayList<Integer> players;
 
    // Constructor creates an empty ArrayList of player numbers
-   public PlayerManager() {
+   public PlayerManagerSorted() {
       players = new ArrayList<Integer>();
    }
 
@@ -18,8 +18,8 @@ public class PlayerManagerSorted {
       i = 0;
 
       while ((!foundHigher) && (i < players.size())) {
-         if (players.get(i) > playerNum) {
-            // FIXME: insert playerNum at element i
+         if (players.get(i) > playerNum) 
+         {
             players.add (i, playerNum);
             foundHigher = true;
          }
@@ -27,7 +27,7 @@ public class PlayerManagerSorted {
          ++i;
       }
 
-      // FIXME: change so executes if higher number NOT found
+  
       if (!foundHigher) { // No higher number found, add at end
          players.add(playerNum);
       }
@@ -42,9 +42,9 @@ public class PlayerManagerSorted {
       }
    }
 
-   // Uses an object of type PlayerManager 
+   // Uses an object of type PlayerManagerSorted 
    public static void main(String[] args) {
-      PlayerManager teamRoster = new PlayerManager();
+      PlayerManagerSorted teamRoster = new PlayerManagerSorted();
       teamRoster.addPlayer(55);
       teamRoster.addPlayer(4);
       teamRoster.addPlayer(50);
