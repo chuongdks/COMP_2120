@@ -24,9 +24,13 @@ public class EmployeeData implements Comparable<EmployeeData> {
       // If in same organization, use name
       if (comparisonVal == 0) 
       {
-         fullName = lastName + firstName;
-         otherFullName = otherEmpl.lastName + otherEmpl.firstName;
-         comparisonVal = fullName.compareTo(otherFullName);
+         comparisonVal = emplID.compareTo(otherEmpl.emplID);
+         if (comparisonVal > 0)
+         {
+            fullName = lastName + firstName;
+            otherFullName = otherEmpl.lastName + otherEmpl.firstName;
+            comparisonVal = fullName.compareTo(otherFullName);       
+         }     
       }
 
       return comparisonVal;

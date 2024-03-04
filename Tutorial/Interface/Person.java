@@ -17,17 +17,12 @@ public class Person implements Measureable{
     }
 
     public static void main(String[] args){
-        ArrayList<Measureable> measurableList = new ArrayList<>();
-
         Person canada = new Person();
         canada.addAge(24);
         canada.addAge(23);
         canada.addAge(14);
 
-        // Assuming each Person instance is measurable based on their age
-        measurableList.add(canada);
-
-        Measureable.Average(measurableList);
+        Measureable.Average();
     }
 
 
