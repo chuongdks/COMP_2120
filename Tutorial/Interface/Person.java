@@ -4,7 +4,7 @@ public class Person implements Measureable{
     private int age;
     ArrayList<Integer> groupAge = new ArrayList<Integer>();
 
-    // Method to add an author
+    // Method to add an age
     public void addAge(int age) 
     {
         this.groupAge.add(age);
@@ -17,11 +17,17 @@ public class Person implements Measureable{
     }
 
     public static void main(String[] args){
-        groupAge.add(24);
-        groupAge.add(23);
-        groupAge.add(14);
+        ArrayList<Measureable> measurableList = new ArrayList<>();
 
-        Measureable.Average(groupAge);
+        Person canada = new Person();
+        canada.addAge(24);
+        canada.addAge(23);
+        canada.addAge(14);
+
+        // Assuming each Person instance is measurable based on their age
+        measurableList.add(canada);
+
+        Measureable.Average(measurableList);
     }
 
 
