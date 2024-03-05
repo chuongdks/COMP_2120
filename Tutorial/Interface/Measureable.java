@@ -2,21 +2,15 @@
 import java.util.ArrayList;
 
 public interface Measureable{
-    int getMeasure();
-
-    public static double Average (ArrayList<Measureable> a)
-    {
-        // for (int i = 0; i < a.size(); i++)
-        // {
-        // }
+    public int getMeasure();
+    public static double average(ArrayList<Measureable> array) {
         double sum = 0;
-        for (Measureable m : a)
+        for (Measureable m : array)
         {
             sum += m.getMeasure();
         }
-        return sum/a.size();
+        return sum/array.size();
     }
-
 }
 
 

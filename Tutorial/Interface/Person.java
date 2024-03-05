@@ -1,14 +1,12 @@
 import java.util.ArrayList;
 // Person file
-public class Person implements Measureable{    
-    private int age;
-    ArrayList<Integer> groupAge = new ArrayList<Integer>();
+public class Person implements Measureable{   
+    int age; 
 
-    // Method to add an age
-    public void addAge(int age) 
+    public Person(int age)
     {
-        this.groupAge.add(age);
-    }    
+        this.age = age;
+    }
 
     @Override
     public int getMeasure()
@@ -17,12 +15,16 @@ public class Person implements Measureable{
     }
 
     public static void main(String[] args){
-        Person canada = new Person();
-        canada.addAge(24);
-        canada.addAge(23);
-        canada.addAge(14);
+        ArrayList<Measureable> group = new ArrayList<Measureable>();
 
-        Measureable.Average();
+        Person p1 = new Person(2);
+        Person p2 = new Person(2);
+        Person p3 = new Person(2);
+        group.add(p1);
+        group.add(p2);
+        group.add(p3);
+
+        System.out.println(Measureable.average(group));
     }
 
 
