@@ -1,20 +1,24 @@
 public class Generics{
-    // public static void printStringArray (String[] myArray)
-    // {
-    //     for (String e:myArray)
-    //     {
-    //         System.out.println(e);
-    //     }
-    // }
+    /*
+    Why u should use Generic 
 
-    // public static void printIntegerArray (int[] myArray)
-    // {
-    //     for (int e:myArray)
-    //     {
-    //         System.out.println(e);
-    //     }
-    // }    
+    public static void printStringArray (String[] myArray)
+    {
+        for (String e:myArray)
+        {
+            System.out.println(e);
+        }
+    }
 
+    public static void printIntegerArray (int[] myArray)
+    {
+        for (int e:myArray)
+        {
+            System.out.println(e);
+        }
+    }    
+    
+    */
     public static <T> void printArray (T[] myArray) // Can name whatever inside <>, conventionally use 'T'
     {
         for (T e:myArray)
