@@ -42,10 +42,12 @@ public class Generics{
         i[3] = 5;    
         // printIntegerArray(i);
         printArray(i);
-
+        /* 
+        Example only
         Person[] persons = new Person[2];
         person[0] = new Person("Chuong", 21);
         person[1] = new Person("Bob", 99);
         printArray(persons);
+        */
     }
 }
