@@ -289,7 +289,7 @@ public class Polynomial implements Comparable<Polynomial> {
     * Override the equals method. Two polynomials are equal if all their terms are equal.
     * You must follow the correct method signature for this job.
     */    
-    // Override equals method, not sure if taught in zyBook https://www.geeksforgeeks.org/overriding-equals-method-in-java/
+    // Override equals method, not sure if taught in zyBook yet, use this https://www.geeksforgeeks.org/overriding-equals-method-in-java/
     @Override
     public boolean equals(Object obj) 
     {
@@ -342,39 +342,42 @@ public class Polynomial implements Comparable<Polynomial> {
     @Override
     public String toString() 
     {
-        String polynomial = "";
-        boolean firstTerm = true;
+        String polynomialString = "";
+        boolean maxPowerTerm = true;
 
+        // Get individual Key (Power)
         for (int power : this.terms.keySet()) 
         {
+            // Get individual Value (Coefficient)
             int coefficient = this.terms.get(power);
 
+            // 
             if (coefficient != 0) 
             {
-                if (!firstTerm && coefficient > 0) 
+                if (!maxPowerTerm && coefficient > 0) 
                 {
-                    polynomial += " + ";
+                    polynomialString += " + ";
                 }
                 if (coefficient < 0) 
                 {
-                    polynomial += " - ";
+                    polynomialString += " - ";
                     coefficient = -coefficient;
                 }
                 if (coefficient != 1 || power == 0) 
                 {
-                    polynomial += Integer.toString(coefficient);
+                    polynomialString += Integer.toString(coefficient);
                 }
                 if (power > 0) 
                 {
-                    polynomial += "x";
+                    polynomialString += "x";
                     if (power > 1) 
                     {
-                        polynomial += Integer.toString(power);
+                        polynomialString += Integer.toString(power);
                     }
                 }
-                firstTerm = false;
+                maxPowerTerm = false;
             }
         }
-        return polynomial;
+        return polynomialString;
     }
 }
