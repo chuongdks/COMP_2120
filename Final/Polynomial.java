@@ -335,15 +335,14 @@ public class Polynomial implements Comparable<Polynomial> {
     /**                     Method Name: toString
     * Override the toString method.
     * You must follow the correct method signature for this job.
-    * For instance, the polynomial 𝑝(𝑥) = 3𝑥! + 𝑥" − 4𝑥 + 5
+    * For instance, the polynomial 𝑝(𝑥) = 3𝑥^4 + 𝑥^2 − 4𝑥 + 5
     * will be shown as P(x) = 3x4 + x2 – 4x + 5
     */
     // Override toString method
     @Override
     public String toString() 
     {
-        StringBuilder builder = new StringBuilder();
-        builder.append("P(x) = ");
+        String polynomial = "";
         boolean firstTerm = true;
 
         for (int power : this.terms.keySet()) 
@@ -354,28 +353,28 @@ public class Polynomial implements Comparable<Polynomial> {
             {
                 if (!firstTerm && coefficient > 0) 
                 {
-                    builder.append("");
+                    polynomial += " + ";
                 }
                 if (coefficient < 0) 
                 {
-                    builder.append(" - ");
+                    polynomial += " - ";
                     coefficient = -coefficient;
                 }
                 if (coefficient != 1 || power == 0) 
                 {
-                    builder.append(coefficient);
+                    polynomial += Integer.toString(coefficient);
                 }
                 if (power > 0) 
                 {
-                    builder.append("x");
+                    polynomial += "x";
                     if (power > 1) 
                     {
-                        builder.append(power);
+                        polynomial += Integer.toString(power);
                     }
                 }
                 firstTerm = false;
             }
         }
-        return builder.toString();
+        return polynomial;
     }
 }

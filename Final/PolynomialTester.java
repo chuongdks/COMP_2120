@@ -19,7 +19,7 @@ public class PolynomialTester
 
         System.out.println("Creating P2(x) with the terms (-2,5), (0,4), (2,1), and (1,3) ...");
         // Creating a polynomial using the third constructor that has a map as an argument.
-        Polynomial p2 = new Polynomial( new TreeMap<Integer,Integer>() {{ put(-2,5); put(0,4); put(2,1); put(1,3); }} );
+        Polynomial p2 = new Polynomial( new TreeMap<Integer,Integer>() {{ put(2,5); put(0,4); put(2,1); put(1,3); }} );
         System.out.println("P2(x) = " + p2);
 
         System.out.println("Create a copy of P2(x) ...");
