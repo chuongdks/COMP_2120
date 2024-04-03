@@ -54,18 +54,18 @@ public class PolynomialTester
         if (p3.compareTo(p4)<0)
             System.out.println("P3(x) is less than P4(x)");
 
-        // Quadratic quad = new Quadratic(2, 5, -3);
-        // System.out.println("Q(x) = " + quad);
-        // if (quad.roots())
-        //     System.out.printf("Roots of quadratic Q(x)=5x^2+10x+3: Root1=%10.3f , Root2=%10.3f\n",quad.getRoot1(),quad.getRoot2());
-        // else
-        //     System.out.println("This quadratic polynomial has no real roots. (Delta < 0)");
+        Quadratic quad = new Quadratic(2, 5, -3);
+        System.out.println("Q(x) = " + quad);
+        if (quad.roots())
+            System.out.printf("Roots of quadratic Q(x)=5x^2+10x+3: Root1=%10.3f , Root2=%10.3f\n",quad.getRoot1(),quad.getRoot2());
+        else
+            System.out.println("This quadratic polynomial has no real roots. (Delta < 0)");
 
-        // quad = new Quadratic(10, 5, 3);
-        // System.out.println("Q(x) = " + quad);
-        // if (quad.roots())
-        //     System.out.printf("Roots of quadratic Q(x)=5x^2+10x+3: Root1=%10.3f , Root2=%10.3f\n",quad.getRoot1(),quad.getRoot2());
-        // else
-        //     System.out.println("This quadratic polynomial has no real roots. (Delta < 0)");
+        quad = new Quadratic(10, 5, 3);
+        System.out.println("Q(x) = " + quad);
+        if (quad.roots())
+            System.out.printf("Roots of quadratic Q(x)=5x^2+10x+3: Root1=%10.3f , Root2=%10.3f\n",quad.getRoot1(),quad.getRoot2());
+        else
+            System.out.println("This quadratic polynomial has no real roots. (Delta < 0)");
     }
 }
