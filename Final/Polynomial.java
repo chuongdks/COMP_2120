@@ -46,13 +46,19 @@ public class Polynomial implements Comparable<Polynomial> {
         this();
         
         // Check if power is less than 0, throw IllegalArgumentException exception
-        if (power < 0) 
+        try
         {
-            throw new IllegalArgumentException("Power number in Polynomial cannot be negative.");
+            if (power < 0) 
+            {
+                throw new IllegalArgumentException("Power of a term can't be negative. The term ignored.");
+            }
+            // Create one "term" variable for Polynomial class using the 2 parameters
+            this.terms.put(power, coefficient);
         }
-
-        // Else create one "term" variable for Polynomial class using the 2 parameters
-        this.terms.put(power, coefficient);
+        catch (IllegalArgumentException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**                     Third Overloaded Constructor 
@@ -74,19 +80,27 @@ public class Polynomial implements Comparable<Polynomial> {
         for (int power : p.keySet()) 
         {
             // Check if power is less than 0, throw IllegalArgumentException exception
-            if (power < 0) 
+            try
             {
-                throw new IllegalArgumentException("Power number in Polynomial cannot be negative.");
-            }
+                if (power < 0) 
+                {
+                    throw new IllegalArgumentException("Power of a term can't be negative. The term ignored.");
+                }
 
-            // Find max power from TreeMap to set the 'degree' of Polynomial
-            if (power > this.degree) 
+                // Find max power from TreeMap to set the 'degree' of Polynomial
+                if (power > this.degree) 
+                {
+                    this.degree = power;
+                }
+
+                // Add a new term based on the 'power' key variable of the TreeMap
+                terms.put(power, p.get(power));                
+            }
+            catch (IllegalArgumentException e)
             {
-                this.degree = power;
+                System.out.println(e.getMessage());
+                this.removeTerm(power);
             }
-
-            // Add a new term based on the 'power' key variable of the TreeMap
-            terms.put(power, p.get(power));
         }
     }
 
@@ -318,14 +332,17 @@ public class Polynomial implements Comparable<Polynomial> {
     @Override
     public int compareTo(Polynomial other) 
     {
+        // return 1 if 𝑝(0) > 𝑞(0)
         if (this.evaluate(0) > other.evaluate(0)) 
         {
             return 1;
         } 
+        // return -1 if 𝑝(0) < 𝑞(0)
         else if (this.evaluate(0) < other.evaluate(0)) 
         {
             return -1;
         } 
+        // return 0 if 𝑝(0) = 𝑞(0)
         else 
         {
             return 0;
@@ -342,8 +359,8 @@ public class Polynomial implements Comparable<Polynomial> {
     @Override
     public String toString() 
     {
-        String polynomialString = "";
-        boolean maxPowerTerm = true;
+        String polynomialString = ""; // Polynomial String
+        boolean maxPowerTerm = true; // Check if a term is the biggest term
 
         // Get individual Key (Power)
         for (int power : this.terms.keySet()) 
@@ -351,22 +368,29 @@ public class Polynomial implements Comparable<Polynomial> {
             // Get individual Value (Coefficient)
             int coefficient = this.terms.get(power);
 
-            // 
+            // If the Coefficient is 0 then dont write it
             if (coefficient != 0) 
             {
+                // If not max Term and the Coefficient is > 0, add '+' sign
                 if (!maxPowerTerm && coefficient > 0) 
                 {
                     polynomialString += " + ";
                 }
+
+                // If the Coefficient is < 0, add '-' sign
                 if (coefficient < 0) 
                 {
                     polynomialString += " - ";
                     coefficient = -coefficient;
                 }
+
+                // Number printing, if Coefficient is not 1 or the Power is 0, just print the Coefficient number. Ex: x^2 or 5x^0 = 5
                 if (coefficient != 1 || power == 0) 
                 {
                     polynomialString += Integer.toString(coefficient);
                 }
+
+                // Number printing, if the Powah is > 0, add the letter 'x' and if it is > 1, print the power number. Ex: x3 or x^1 = x
                 if (power > 0) 
                 {
                     polynomialString += "x";
@@ -375,7 +399,7 @@ public class Polynomial implements Comparable<Polynomial> {
                         polynomialString += Integer.toString(power);
                     }
                 }
-                maxPowerTerm = false;
+                maxPowerTerm = false; // Since the TreeMap is in reverse order, the max Term is always the first Term, so set false after first iteration
             }
         }
         return polynomialString;
