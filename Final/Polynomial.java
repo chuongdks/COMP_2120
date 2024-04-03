@@ -18,7 +18,7 @@ public class Polynomial implements Comparable<Polynomial> {
     private Map<Integer, Integer> terms;
     private int degree;
 
-    /**     Default Constructor
+    /**                     Default Constructor
     * Constructs an empty polynomial.
     * Polynomial should be in reverse order, such that the terms are stored in descending order.
     * The degree of an empty polynomial should be set to -1.
@@ -31,7 +31,7 @@ public class Polynomial implements Comparable<Polynomial> {
         this.degree = -1;
     }
 
-    /** Second Overloaded Constructor
+    /**                     Second Overloaded Constructor
     * Constructs a new polynomial with two parameters, power and coefficient, as one term.
     * It must first call the default constructor to create an empty polynomial.
     * Then, it must check the power value, and if it is negative, it must throw an
@@ -55,7 +55,7 @@ public class Polynomial implements Comparable<Polynomial> {
         this.terms.put(power, coefficient);
     }
 
-    /** Third Overloaded Constructor 
+    /**                     Third Overloaded Constructor 
     * Constructs a new polynomial with a TreeMap as a parameter.
     * It must first call the default constructor to create an empty polynomial.
     * Then, it must find the maximum power from the TreeMap given and set the degree of the
@@ -90,7 +90,7 @@ public class Polynomial implements Comparable<Polynomial> {
         }
     }
 
-    /** Fourth Overloaded Constructor (Copy Constructor)
+    /**                     Fourth Overloaded Constructor (Copy Constructor)
     * Copy Constructor (The new polynomial is a separate copy of an existing polynomial.)
     * It has a polynomial, p, as one parameter.
     * It must create the new polynomial by copying the polynomial given as the parameter.
@@ -106,7 +106,7 @@ public class Polynomial implements Comparable<Polynomial> {
         this.terms.putAll(p.terms);
     }
 
-    /** Method Name: add
+    /**                     Method Name: add
     * This method gets a polynomial, p, as a parameter, and adds its terms to the existing
     * polynomial, and updates the polynomial degree, if needed.
     * Adds the polynomial such that the terms are in order from highest power to lowest one.
@@ -140,7 +140,7 @@ public class Polynomial implements Comparable<Polynomial> {
         }
     }
 
-    /** Method Name: add (Overloaded)
+    /**                     Method Name: add (Overloaded)
     * This static method gets two polynomials, p1 and p2, as the parameters.
     * Then, it creates a new polynomial by adding two existing polynomials, stores into the new
     * one, and returns it.
@@ -151,64 +151,136 @@ public class Polynomial implements Comparable<Polynomial> {
     * @return a new polynomial which is the summation of the two polynomials p1 and p2
     */
     // Overloaded add method
-    public static Polynomial add(Polynomial p1, Polynomial p2) {
+    public static Polynomial add(Polynomial p1, Polynomial p2) 
+    {
         // Create a new Polynomial which copy from Polynomial p1
         Polynomial p3 = new Polynomial(p1);
 
         // Use the add() method to add p2 into p1
         p3.add(p2);
-        
+
         return p3;
     }
 
+    /**                     Method Name: subtract
+    * This method subtracts the polynomial p from the existing one.
+    * A simple way is to create a new polynomial from the parameter, polynomial p, and change
+    * the powers of all its terms to their corresponding negative values. Then add this
+    * polynomial to the existing one.
+    * @param p the polynomial to subtract
+    */
     // Method to subtract another Polynomial
-    public void subtract(Polynomial polynomial) {
-        for (int power : polynomial.terms.keySet()) {
-            int coefficient = polynomial.terms.get(power);
-            if (terms.containsKey(power)) {
-                terms.put(power, terms.get(power) - coefficient);
-            } else {
-                terms.put(power, -coefficient);
+    public void subtract(Polynomial p) 
+    {
+        // Since the 'power' variable is in the key element, loop the new 'power' variable in the Map's keySet using the Enchanced loop
+        for (int power : p.terms.keySet()) 
+        {
+            // Get 'coefficient' of the 'p' Polynomial by getting the value maps to a specific key
+            int coefficient = p.terms.get(power);
+            
+            // If the 2 terms has the same key (power) then combine the 2 value (coefficients)
+            if (this.terms.containsKey(power)) 
+            {
+                this.terms.put(power, this.terms.get(power) - coefficient);
+            } 
+            else // else just add them normally but change the value (coefficients) to negative
+            {
+                this.terms.put(power, -coefficient);
             }
-            degree = Math.max(degree, power);
-        }
+
+            // Find max power from TreeMap to set the 'degree' of Polynomial
+            if (power > this.degree) 
+            {
+                this.degree = power;
+            }
+        }        
     }
 
+    /**                     Method Name: subtract (Overloaded)
+    * This static method will get two polynomials, p1 and p2, subtract p2 from p1, and return
+    * the result as a polynomial.
+    * Use the subtract method that you have previously developed to prevent any redundant code.
+    * @param p1 the first existing polynomial
+    * @param p2 the second existing polynomial
+    * @return a polynomial which is the result of the subtraction of p2 from p1
+    */
     // Overloaded subtract method
-    public static Polynomial subtract(Polynomial p1, Polynomial p2) {
-        Polynomial result = new Polynomial(p1);
-        result.subtract(p2);
-        return result;
+    public static Polynomial subtract(Polynomial p1, Polynomial p2) 
+    {
+        // Create a new Polynomial which copy from Polynomial p1
+        Polynomial p3 = new Polynomial(p1);
+
+        // Use the add() method to add p2 into p1
+        p3.subtract(p2);
+
+        return p3;        
     }
 
-    // Method to get the degree of the polynomial
-    public int getDegree() {
-        return degree;
+    /**                     Method Name: getDegree
+    * This method returns the degree of an existing polynomial (implicit parameter).
+    * @return degree of the polynomial
+    */
+    // Getter method to get the degree of the polynomial
+    public int getDegree() 
+    {
+        return this.degree;
     }
 
-    // Method to get the coefficient of a term
-    public int coefficient(int power) {
-        return terms.getOrDefault(power, 0);
+    /**                     Method Name: coefficient
+    * This method returns the coefficient of the term, corresponding to the power given, of the
+    * existing polynomial (implicit parameter).
+    * You can use the method keyset for this purpose.
+    * @param power the term's power
+    * @return an integer which is the coefficient of the term with the corresponding power
+    */
+    // Getter Method to get the coefficient of a term
+    public int coefficient(int power) 
+    {
+        return this.terms.get(power);
     }
 
+    /**                     Method Name: changeCoefficient
+    * This method changes the coefficient of a term in the existing polynomial (implicit
+    * parameter), corresponding to the power, given as the first parameter, with a new
+    * coefficient, given as the second parameter. You can use keySet method for this purpose.
+    * @param power the term's power
+    * @param newCoefficient the new value of the coefficient
+    */
     // Method to change coefficient of a term
-    public void changeCoefficient(int power, int newCoefficient) {
-        if (terms.containsKey(power)) {
-            terms.put(power, newCoefficient);
+    public void changeCoefficient(int power, int newCoefficient) 
+    {
+        if (this.terms.containsKey(power)) 
+        {
+            this.terms.put(power, newCoefficient);
         }
     }
 
+    /**                     Method Name: removeTerm
+    * This method removes an existing term from the existing polynomial (implicit parameter).
+    * @param power the term's power
+    */
     // Method to remove a term
-    public void removeTerm(int power) {
-        terms.remove(power);
-        updateDegree();
+    public void removeTerm(int power) 
+    {
+        if (this.terms.containsKey(power)) 
+        {
+            this.terms.remove(power);
+        }
     }
 
+    /**                     Method Name: evaluate
+    * This method evaluates the existing polynomial (implicit parameter) using a value, x, given
+    * as a parameter.
+    * @param x the value the polynomial must be evaluated for
+    * @return The value of the polynomial at the given value, x
+    */
     // Method to evaluate the polynomial for a given value
-    public double evaluate(double x) {
+    public double evaluate(double x) 
+    {
         double result = 0;
-        for (int power : terms.keySet()) {
-            result += terms.get(power) * Math.pow(x, power);
+        for (int power : this.terms.keySet()) 
+        {
+            result += this.terms.get(power) * Math.pow(x, power); // Coefficient * (x ^ Power)
         }
         return result;
     }
