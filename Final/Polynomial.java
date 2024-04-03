@@ -285,54 +285,92 @@ public class Polynomial implements Comparable<Polynomial> {
         return result;
     }
 
-    // Override equals method
+    /**                     Method Name: equals
+    * Override the equals method. Two polynomials are equal if all their terms are equal.
+    * You must follow the correct method signature for this job.
+    */    
+    // Override equals method, not sure if taught in zyBook https://www.geeksforgeeks.org/overriding-equals-method-in-java/
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object obj) 
+    {
+        // If the object is compared with itself then return true  
+        if (this == obj) 
+        {
             return true;
         }
-        if (!(obj instanceof Polynomial)) {
+        // Check if object is an instance of Polynomial or not. "null instanceof [type]" also returns false 
+        if (!(obj instanceof Polynomial)) 
+        {
             return false;
         }
+
+        // typecast object to Polynomial so that we can compare data members 
         Polynomial other = (Polynomial) obj;
-        return terms.equals(other.terms);
+
+        // Compare the data members and return accordingly 
+        return this.terms.equals(other.terms);
     }
 
-    // Override compareTo method
+    /**                     Method Name: compareTo
+    * Override the compareTo method, based on the evaluation of two polynomials with value 0.
+    */    
+    // Override compareTo method using evaluate() method
     @Override
-    public int compareTo(Polynomial other) {
-        if (evaluate(0) > other.evaluate(0)) {
+    public int compareTo(Polynomial other) 
+    {
+        if (this.evaluate(0) > other.evaluate(0)) 
+        {
             return 1;
-        } else if (evaluate(0) < other.evaluate(0)) {
+        } 
+        else if (this.evaluate(0) < other.evaluate(0)) 
+        {
             return -1;
-        } else {
+        } 
+        else 
+        {
             return 0;
         }
     }
 
+    /**                     Method Name: toString
+    * Override the toString method.
+    * You must follow the correct method signature for this job.
+    * For instance, the polynomial 𝑝(𝑥) = 3𝑥! + 𝑥" − 4𝑥 + 5
+    * will be shown as P(x) = 3x4 + x2 – 4x + 5
+    */
     // Override toString method
     @Override
-    public String toString() {
+    public String toString() 
+    {
         StringBuilder builder = new StringBuilder();
         builder.append("P(x) = ");
         boolean firstTerm = true;
-        for (int power : terms.keySet()) {
-            int coefficient = terms.get(power);
-            if (coefficient != 0) {
-                if (!firstTerm && coefficient > 0) {
-                    builder.append(" + ");
+
+        for (int power : this.terms.keySet()) 
+        {
+            int coefficient = this.terms.get(power);
+
+            if (coefficient != 0) 
+            {
+                if (!firstTerm && coefficient > 0) 
+                {
+                    builder.append("");
                 }
-                if (coefficient < 0) {
+                if (coefficient < 0) 
+                {
                     builder.append(" - ");
                     coefficient = -coefficient;
                 }
-                if (coefficient != 1 || power == 0) {
+                if (coefficient != 1 || power == 0) 
+                {
                     builder.append(coefficient);
                 }
-                if (power > 0) {
+                if (power > 0) 
+                {
                     builder.append("x");
-                    if (power > 1) {
-                        builder.append("^").append(power);
+                    if (power > 1) 
+                    {
+                        builder.append(power);
                     }
                 }
                 firstTerm = false;
