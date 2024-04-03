@@ -25,10 +25,10 @@ public class Polynomial implements Comparable<Polynomial> {
     * The type of the Map for the instance filed terms must be TreeMap, which can keep the order
     * of the polynomial terms.
     */
-    // Default Constructor
+    // Default Constructor, create empty Polynomial
     public Polynomial() {
-        terms = new TreeMap<>(Collections.reverseOrder()); // Polynomial is in reverse order using the Hint
-        degree = -1;
+        this.terms = new TreeMap<>(Collections.reverseOrder()); // Polynomial is in reverse order using the Hint
+        this.degree = -1;
     }
 
     /** Second Overloaded Constructor
@@ -52,7 +52,7 @@ public class Polynomial implements Comparable<Polynomial> {
         }
 
         // Else create one "term" variable for Polynomial class using the 2 parameters
-        terms.put(power, coefficient);
+        this.terms.put(power, coefficient);
     }
 
     /** Third Overloaded Constructor
@@ -64,22 +64,42 @@ public class Polynomial implements Comparable<Polynomial> {
     */
     // Third Constructor
     public Polynomial(Map<Integer, Integer> p) {
+        // Call Default Constructor
         this();
 
+        // Create the new polynomial by copying the polynomial given as the parameter using putAll() method
+        this.terms.putAll(p);
+        
+        // Since the 'power' variable is in the key element, loop the new 'power' variable in the Map's keySet using the Enchanced loop
         for (int power : p.keySet()) 
         {
             if (power < 0) 
             {
                 throw new IllegalArgumentException("Power number in Polynomial cannot be negative.");
             }
-
-            this.terms.putAll();
         }
     }
-
+    
+    /** Fourth Overloaded Constructor (Copy Constructor)
+    * Constructs a new polynomial with a TreeMap as a parameter.
+    * It must first call the default constructor to create an empty polynomial.
+    * Then, it must find the maximum power from the TreeMap given and set the degree of the
+    * polynomial. You can use the keyset method of the TreeMap class for this purpose.
+    * Then, Using a loop, it adds the terms from the TreeMap into the polynomial.
+    * For any element of the TreeMap, if the power value is negative, it must throw an
+    * IllegalArgumentException exception with a proper message.
+    * @param p a TreeMap including the powers and corresponding coefficients (Integer, Integer)
+    */
     // Copy Constructor
-    public Polynomial(Polynomial polynomial) {
-        this(polynomial.terms);
+    public Polynomial(Polynomial p) {
+        this();
+        for (int power : p.keySet()) {
+            if (power < 0) {
+                throw new IllegalArgumentException("Power cannot be negative.");
+            }
+            terms.put(power, p.get(power));
+            degree = Math.max(degree, power);
+        }
     }
 
     // Method to add another Polynomial
