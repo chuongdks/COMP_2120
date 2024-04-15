@@ -233,6 +233,49 @@ public class Polynomial implements Comparable<Polynomial> {
         return p3;        
     }
 
+    /**                     
+    * Method Name: multiply
+    * This method multiplies the implicit parameter polynomial with another polynomial given as a parameter.
+    * It creates a new polynomial to store the result of the multiplication.
+    * @param p the polynomial to multiply with
+    * @return a new polynomial which is the result of the multiplication
+    */
+    public Polynomial multiply(Polynomial p) {
+        // Create a new polynomial to store the result
+        Polynomial result = new Polynomial();
+
+        // Iterate through each term of the implicit parameter polynomial
+        for (int power1 : this.terms.keySet()) 
+        {
+            int coefficient1 = this.terms.get(power1);
+
+            // Iterate through each term of the parameter polynomial
+            for (int power2 : p.terms.keySet()) 
+            {
+                int coefficient2 = p.terms.get(power2);
+
+                // Multiply the coefficients and add the powers
+                int newCoefficient = coefficient1 * coefficient2;
+                int newPower = power1 + power2;
+
+                // Add the term to the result polynomial
+                result.terms.put(newPower, result.terms.getOrDefault(newPower, 0) + newCoefficient); //getOrDefault(key, defaultValue) get the value mapped with specific key, if not found then return default value
+                /*
+                 * Alternatively, you could do this:
+                result.terms.put(newPower, result.terms.containsKey(newPower) ? result.terms.get(newPower) + newCoefficient : newCoefficient);
+                */
+
+                // Update the degree of the result polynomial if necessary
+                if (newPower > result.degree) 
+                {
+                    result.degree = newPower;
+                }
+            }
+        }
+
+        return result;
+    }
+
     /**                     Method Name: getDegree
     * This method returns the degree of an existing polynomial (implicit parameter).
     * @return degree of the polynomial

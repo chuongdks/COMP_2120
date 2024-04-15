@@ -67,5 +67,21 @@ public class PolynomialTester
             System.out.printf("Roots of quadratic Q(x)=5x^2+10x+3: Root1=%10.3f , Root2=%10.3f\n",quad.getRoot1(),quad.getRoot2());
         else
             System.out.println("This quadratic polynomial has no real roots. (Delta < 0)");
+
+        // Test the multiplication method
+        Polynomial P1 = new Polynomial();
+        P1.add(new Polynomial(6, 3));
+        P1.add(new Polynomial(2, -1));
+        P1.add(new Polynomial(1, 3));
+        P1.add(new Polynomial(0, -5));
+        
+        Polynomial P2 = new Polynomial();
+        P2.add(new Polynomial(6, -3));
+        P2.add(new Polynomial(2, 2));
+        P2.add(new Polynomial(0, 9));
+        
+        // Multiply P1 by P2
+        Polynomial Q = P1.multiply(P2);
+        System.out.println("Q(x) = " + Q); // Output: Q(x) = -9x^12 + 9x^8 - 9x^7 + 42x^6 - 2x^4 + 6x^3 - 19x^2 + 27x - 45   
     }
 }
