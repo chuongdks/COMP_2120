@@ -55,6 +55,7 @@ public class Polynomial implements Comparable<Polynomial> {
             }
             // Create one "term" variable for Polynomial class using the 2 parameters
             this.terms.put(power, coefficient);
+            this.degree = power; // Do we even need this lol
         }
         catch (IllegalArgumentException e)
         {
@@ -119,6 +120,7 @@ public class Polynomial implements Comparable<Polynomial> {
 
         // Use the method putAll to copy all the terms of the existing polynomial to the new one.
         this.terms.putAll(p.terms);
+        this.degree = p.degree;
     }
 
     /**                     Method Name: add
