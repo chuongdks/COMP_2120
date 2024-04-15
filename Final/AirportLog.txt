@@ -1,0 +1,6 @@
+Flight AA123 taken-off
+Flight AA122 taken-off
+Flight AA111 taken-off
+Flight SP333 landed.
+Flight DA123 landed.
+Flight DA456 landed.

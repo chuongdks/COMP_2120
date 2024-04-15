@@ -1,5 +1,6 @@
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -95,39 +96,54 @@ public class Airport {
     {
         String activityLogString = "";
 
-        Stack<String> tempLog = new Stack<>(); // Create a temporary stack
-        // Copy elements from activityLog to tempLog
-        tempLog.addAll(activityLog);        
-
-        if (activityLog.peek() != null) // or !activityLog.isEmpty()
+        Stack<String> reversedLog = new Stack<>(); // Create a temporary stack
+        // Reverse the order of elements in the activityLog stack
+        while (!activityLog.isEmpty()) // or  activityLog.peek() != null but using it will cause Java to throw Exception when the Stack is empty in the beginning
+        {
+            reversedLog.push(activityLog.pop());
+        }
+        
+        if (!reversedLog.isEmpty() ) // or reversedLog.peek() != null
         {
             activityLogString += "List of the landing/take-off activities\n"; 
             activityLogString += "---------------------------------------\n";             
-            for (String flightLog : activityLog)
+            for (String flightLog : reversedLog) 
             {
-                activityLogString += flightLog + "\n"; // activityLog.pop() + "\n"
+                activityLogString += flightLog + "\n";
             }
-        }
-        else if (activityLog.peek() == null) 
+        } 
+        else 
         {
             activityLogString += "No activity exists.\n";
         }
+        
+        // Restore the original order of elements in the activityLog stack
+        while (!reversedLog.isEmpty()) // or reversedLog.peek() != null
+        {
+            activityLog.push(reversedLog.pop());
+        }
+        
         return activityLogString;
     }
 
-    // // Overloaded method to write activity log to a text file
-    // public void log(String filename) // f
-    // {
-    //     try (FileWriter writer = new FileWriter(filename)) 
-    //     {
-    //         while (!activityLog.isEmpty()) 
-    //         {
-    //             writer.write(activityLog.pop() + "\n");
-    //         }
-    //     } 
-    //     catch (IOException e) 
-    //     {
-    //         e.printStackTrace();
-    //     }
-    // }
+    // Overloaded method to write activity log to a text file
+    public void log(String filename) // f
+    {
+        try (PrintWriter outFS = new PrintWriter(new FileOutputStream(filename)))
+        {
+            // Pop the activityLog Stack into the file
+            while (!activityLog.isEmpty()) 
+            {
+                outFS.println(activityLog.pop());
+            }
+        }
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+
+        // Done with file, so try to close
+        // Note that close() may throw an IOException on failure
+        // outFS.close();
+    }
 }

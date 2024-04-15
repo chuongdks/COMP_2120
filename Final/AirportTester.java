@@ -55,7 +55,10 @@ public class AirportTester
                     System.out.println(boeing.log());
                     break;
 
-                // case 'f':
+                case 'f':
+                    System.out.println("Writing the airport log to the file AirportLog.txt\n");
+                    boeing.log("AirportLog.txt");
+                    break;
 
                 case 'q':
                     quit = true;
